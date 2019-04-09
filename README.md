@@ -30,7 +30,7 @@ int main(int argc, const char** argv) {
 }
 ```
 
-If you have feedback please share on the issue tracker at [github.com/pciet/goc/issues](https://github.com/pciet/goc/issues) and I'll try to respond, thanks! The interpretations of others is an effective way to improve. Private comments have already made these essays better and I can commit changes described by our discussion.
+If you have feedback please share on the issue tracker at [www.github.com/pciet/goc/issues](https://github.com/pciet/goc/issues) and I'll try to respond, thanks! The interpretations of others is an effective way to improve. Private comments have already made these essays better and I can commit changes described by our discussion.
 
 ## Essays
 

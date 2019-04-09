@@ -60,7 +60,7 @@ Address    Content
 
 In this above example when the program at memory address 10,100 happens then the content of 10,020 will be 1. Pointers can be prominent in programming computers not just for languages like Go or C because they can be part of how the computer's commands operate, like how this example has memory addressing as part of the command.
 
-Functions, implemented with "jump the program to a pointer and keep running" and "return to where the jump was from" commands, are one of the main uses of pointers. A function is a program that is reused within a program, and often additional memory input (arguments) for the function shouldn't be unnecessarily copied. Other tradeoffs are made by giving the function a pointer instead of the content, like the pointed to memory can be anywhere in memory without having to change the program to use exact memory addresses.
+Functions, implemented with "jump the program to an address and keep running" and "return to where the jump was from" commands, are one of the main uses of pointers. A function is a program that is reused within a program, and often additional memory input (arguments) for the function shouldn't be unnecessarily copied. Other tradeoffs are made by giving the function a pointer instead of the content, like the pointed to memory can be anywhere in memory without having to change the program to use exact memory addresses. Functions themselves can be pointed to.
 
 Variables are memory addresses that can have their content changed or used by the program. In Go and C a ```*``` character is used to state that a variable is a pointer (the variable's address has a pointer for content), and the same asterisk character is also used to get the content of memory pointed to by the pointer variable. The ```&``` character is to get the pointer to a variable and can be thought of as "address of".
 
@@ -123,7 +123,7 @@ func main() {
 
 In terms of a historic computer department of people, perhaps a pointer can be thought of as one computer walking down the hall to get the result of another computer's calculation for input into their own calculations. The pointed to math result can be reused by writing it down on a new sheet of paper instead of taking the paper with the original calculations. It's not an exact analogy for pointers but might help in thinking how new computing memory is used.
 
-For new computers pointers also represent arrays of things by pointing to the start of the array in memory which is the topic for the rest of this essay.
+For new computers pointers can also represent arrays of things by pointing to the start of the array in memory which is the topic for the rest of this essay.
 
 ## No repeats
 
@@ -171,7 +171,7 @@ func (a Set) Combine(with ...Set) Set {
 }
 ```
 
-In this example from the package [github.com/pciet/unordered]() a set of anything is implemented as a slice. If the capacity of the slice is less than what's being added to it with ```append``` then the array pointed to by the slice will be reallocated to a larger size in ```append```, which is why the slice should be assigned back to itself when the ```Add``` method is used:
+In this example from the package [github.com/pciet/unordered](https://github.com/pciet/unordered) a set of anything is implemented as a slice. If the capacity of the slice is less than what's being added to it with ```append``` then the array pointed to by the slice will be reallocated to a larger size in ```append```, which is why the slice should be assigned back to itself when the ```Add``` method is used:
 
 ```
 func main() {
@@ -194,7 +194,7 @@ func main() {
 }
 ```
 
-A way to reduce repeating source code because of varying types in Go is the ```interface{}``` which can have variables of any type assigned to it. In C this is similarly done with ```void*``` which is a pointer without knowing the memory length of what's pointed at. In both cases a cast to another type is necessary for use so the program knows the memory width of the variable.
+A way to reduce repeating source code because of varying types in Go is the ```interface{}``` which can have variables of any type assigned to it. In C this is similarly done with ```void*``` which is a pointer without knowing the memory length of what's pointed at. In both cases a cast to another type is necessary for use so the program knows the memory length of the variable.
 
 The ```Combine``` method might look like this in C:
 
@@ -439,7 +439,7 @@ int main(int argc, const char** argv) {
 
 This test program could be improved by reducing repeating and adding more test cases, but there's also a balance to find here with getting something working fast that's going to be tested during program development anyway.
 
-A metaphor is that sometimes there's fish that are bigger, tastier, and easier to catch and prepare, or similarly there's kinds of food plants that grow better in your environment and are easier to harvest and perserve anyway. My experience is that it's not always easy to spend your limited time wisely but trying is the only way to improve. Try to avoid repeating, try to use good practices like writing test programs, and try to pace your time, but in the modern world good fishing doesn't always have catching.
+A metaphor is that sometimes there's fish that are bigger, tastier, and easier to catch and prepare, or similarly there's kinds of food plants that grow better in your environment and are easier to harvest and preserve anyway. My experience is that it's not always easy to spend your limited time wisely but trying is the only way to improve. Try to avoid repeating, try to use good practices like writing test programs, and try to pace your time, but in the modern world good fishing doesn't always have catching.
 
 ## Generic type safety
 
@@ -651,7 +651,9 @@ For this essay I first described pointers because programming with slices and ar
 
 Performance considerations were skipped. Computer memory can have caches and operating system details (like how exactly ```make``` and ```malloc``` allocate memory) that if considered can improve your program's performance by orders of magnitude, but a theory is that source code performance should only be part of your design when you have clear profiling or other data to reference that shows what should be improved. It's possible that a use of ```GrowArray``` might need tuning (like allowing a guess for the initial allocation size like Go does with ```make```) or have to be replaced with a more performance-minded concept that minimizes memory reallocation. ```unordered.Set``` has some performance improvements already but by using ```interface{}``` the array is of pointers instead of the actual variable memories which might be too many memory interactions.
 
-Despite package ```unordered``` and ```GrowArray``` having different use cases they both use the transparently growing array concept that slices in Go bring with ```append```. The ```interface{}``` and ```void*``` types can help reduce source code repeating that can come with an implementation needed for varying types.
+Despite package ```unordered``` and ```GrowArray``` having different use cases they both use the transparently growing array concept that slices in Go bring with ```append```.
+
+The ```interface{}``` and ```void*``` types can help reduce source code repeating that can come with an implementation needed for varying types.
 
 The Go type system seems to be more helpful for memory arithmetic by skipping the manual calculations that have to be done in C for ```malloc``` by multiplying the number of array indices by the size of the type.
 
