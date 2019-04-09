@@ -1,4 +1,4 @@
-#Grow Array
+# Grow Array
 
 *by Matthew Juran*
 
@@ -9,7 +9,7 @@ For me much of the apparant value in computer programming languages beyond C is 
 
 Before the main part of the essay, which is a relatively advanced programming topic, I'm going to try to describe pointers for a wider audience.
 
--
+---
 
 I've been told that in the modern past computers were people that calculated hard math problems as teams. Perhaps the thought of computers computing without electronics can help illustrate pointers.
 
@@ -125,7 +125,7 @@ In terms of a historic computer department of people, perhaps a pointer can be t
 
 For new computers pointers also represent arrays of things by pointing to the start of the array in memory which is the topic for the rest of this essay.
 
-##No repeats
+## No repeats
 
 A theory is that part of making a high quality computer program is avoiding repeated source code. Source code needs careful thought and practices to get right, and a repeated thing gets in the way because a mistake in one has to be fixed in every repeat, or a new feature has to be copy-pasted to each.
 
@@ -441,7 +441,7 @@ This test program could be improved by reducing repeating and adding more test c
 
 A metaphor is that sometimes there's fish that are bigger, tastier, and easier to catch and prepare, or similarly there's kinds of food plants that grow better in your environment and are easier to harvest and perserve anyway. My experience is that it's not always easy to spend your limited time wisely but trying is the only way to improve. Try to avoid repeating, try to use good practices like writing test programs, and try to pace your time, but in the modern world good fishing doesn't always have catching.
 
-##Generic type safety
+## Generic type safety
 
 The ```GrowArray``` type can be used in a type safe way by making a wrapper type that does the cast to ```void*``` behind a function that requires the held type for input. Set type safety for avoiding ```interface{}``` works similarly in Go.
 
@@ -537,7 +537,7 @@ func (a CoordinateSet) Add(the Coordinate) CoordinateSet {
 ...
 ```
 
-##Using unordered sets
+## Using unordered sets
 
 Here's an example from my source code written in 2017:
 
@@ -583,7 +583,7 @@ In my take on chess part of calculating the available moves a player chooses fro
 
 This is one use of ```SurroundingPoints```, where if a piece has a friendly piece adjacent to it that rallies then this piece is rallied. The slice use and ```range``` keyword removes the concern of array length (between three and eight) of the array that's made by ```SurroundingPoints``` which to me makes more readable source code and hypothetically faster time for me to finish the program. Deallocation from ```make``` isn't an immediate concern in Go because of the garbage collection memory management.
 
-##Using grow array
+## Using grow array
 
 My C program has a visual component where a scene is made of vertices that are drawn by the computer's graphics circuit. A list of vertices is transferred to graphics memory and then when the program requests the display be updated each three vertices in the list is drawn as a triangle with a color. I put together the list by adding vertices to a ```VertexTriangleGrowArray```.
 
@@ -645,7 +645,7 @@ Defining a cube is done by calling ```VTGA_AppendRectangle``` six times to appen
 
 The scene is constructed without knowing the bounds of how many vertices will be needed, so ```GrowArray``` will keep up with the allocation. ```VTGA_Free``` will need to be called later in the program when it's done with the array.
 
-##Summary
+## Summary
 
 For this essay I first described pointers because programming with slices and arrays can need a good understanding of contemporary computer memory.
 

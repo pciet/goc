@@ -1,4 +1,4 @@
-#Function that causes a return
+# Function that causes a return
 
 *by Matthew Juran*
 
@@ -7,7 +7,7 @@
 
 This essay is part of a series about programming contemporary electronic computers with the Go or C languages. It shows how I handle errors uncovered by the program that need human intervention. My perspective is from solo computer program development of networked computer games and social worlds at an early stage, and I hope what I've learned can apply to the variety of computer applications you might be making.
 
--
+---
 
 Often the computer information paths lit by your program need a thing. If that thing isn't right then we call the problem an error. Some errors show that the source code of the program has a mistake, or the computer itself isn't configured right yet for the program. Programmers might isolate a mistake that caused an error by changing the program to show diagnostic text with ```fmt.Println``` or ```printf```, but having these prints as part of the regular program can save time that's needed for new features and polish instead.
 
@@ -232,7 +232,7 @@ This test at least gives a small amount of confidence that will be verified by i
 
 So the idea is that with this above ```Error``` and ```Panic``` stuff in my source code toolbox I'm able to more quickly improve or change my programs.
 
--
+---
 
 A theory is less time is taken to add or understand error checks than it takes to isolate mistakes that cause ambiguous symptoms when errors aren't checked for. Go idiomatic error handling is this idea, done by having error checks after every function call that can signal error conditions:
 
@@ -281,7 +281,7 @@ If you've taken a shortcut by not checking errors and your program isn't working
 
 So far with Go I've used the simpler error reason approach, but writing this essay has convinced me to spend the time to add the error trace like I've done in C.
 
-##When to start
+## When to start
 
 There's a balance to find between error checking and getting the job done. For where I'm at with C it would be nice to add ```snprintf``` formatting to the error string, or even better like how it is in Go:
 
@@ -325,7 +325,7 @@ func (an Err) Error() string {
 }
 ```
 
-##Func that is a return
+## Func that is a return
 
 For C the preprocessor adjusts source code at the start of compilation to a more precise but less readable state (for example it removes comments). My C program's source code became condensed because of using preprocessor macros for the "if error" checks contained in ```ErrorReturn``` and ```NewErrorReturn```:
 
@@ -403,7 +403,7 @@ Besides this condensation, the ```#if```-```#else```-```#endif``` blocks of the 
 
 I like that C can have what looks like a function cause a return of the calling function which is impossible without the preprocessor adding the ```return``` keyword. I've tried to hint at this nontypical behavior by including "Return" in the macro names, but the world of nontypical behaviors enabled by macros might be why they're not in Go.
 
-##Summary
+## Summary
 
 In going back to C after a few years of Go I found the preprocessor macro concept to be surprisingly useful for making this error logic readable and condensed, a concept that isn't matched by Go, but C string manipulation doesn't seem to usually be as beautiful and immediately useful as the Go ```string``` type and associated standard library functions. There could be pride in wrangling C string manipulation to the same level as baseline Go but it takes time that I hypothesize should be spent elsewhere for my program.
 
